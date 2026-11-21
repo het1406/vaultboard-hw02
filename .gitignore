@@ -49,3 +49,5 @@ node_modules/
 *.keystore
 android/key.properties
 .env*
+
+android/.kotlin/

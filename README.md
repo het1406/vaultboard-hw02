@@ -60,9 +60,9 @@ flutter analyze
 
 Rules tests explicitly connect to localhost:8080 and `demo-vaultboard`; authenticated test contexts are synthetic and do not create production Auth accounts. They exercise authorization, schema restrictions, transactions, duplicate handling, live changes across two independent clients, and duplicate replay. An attempted JavaScript `disableNetwork` test did not reject the transaction; it is not evidence of a true network outage. Offline/reconnect runtime testing remains pending. The tests clear only emulator data. No emulator test is pointed at the production project.
 
-For Android emulator use, configure a separate demo Firebase initialization before starting the app (the current `USE_EMULATORS` option redirects endpoints but retains the generated production project ID). Do not claim the `demo-vaultboard` rules test seed is visible in an Android session using a different project ID. Production app defaults never enable emulator routing.
+For Android emulator use, run `flutter run --dart-define=USE_EMULATORS=true`. This creates a named `demo-vaultboard` Firebase app and routes Auth/Firestore to 10.0.2.2. It never uses the production Firebase app for these services. Run `node scripts/seed_emulators.mjs` while the suite is running to create synthetic Alice/Bob accounts and two messages. Default production builds never enable this option.
 
-Widget tests cover registration validation, splash retry, and StreamBuilder cancellation. The listener test verifies the framework primitive used by the board; complete navigation-level listener verification remains pending. Rendered widget images in `test/evidence` are genuine test output, not device screenshots.
+Widget tests cover registration validation, splash retry, and StreamBuilder cancellation. The listener test mounts the actual board, rebuilds it, and removes it, checking exactly one subscription and cancellation. Rendered widget images in `test/evidence` are genuine test output, not device screenshots.
 
 ## Android release signing, build and installation
 

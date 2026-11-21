@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:message_board/services/board_service.dart';
+import 'package:message_board/models/board_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:message_board/main.dart';
@@ -6,7 +8,24 @@ import 'package:message_board/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FakeAuth extends Fake implements FirebaseAuth {}
+class FakeUser extends Fake implements User {
+  @override
+  String get uid => 'alice';
+}
+
+class FakeAuth extends Fake implements FirebaseAuth {
+  @override
+  User? get currentUser => FakeUser();
+}
+
+class FakeBoard extends Fake implements BoardService {
+  final Stream<List<BoardMessage>> stream;
+  FakeBoard(this.stream);
+  @override
+  Stream<List<BoardMessage>> messageBoard() => stream;
+  @override
+  Future<Map<String, dynamic>?> pending() async => null;
+}
 
 class FakeDb extends Fake implements FirebaseFirestore {}
 
@@ -89,25 +108,43 @@ void main() {
     expect(find.text('Enter a valid email'), findsOneWidget);
     expect(find.text('Passwords must match'), findsOneWidget);
   });
-  testWidgets('StreamBuilder cancels its subscription when removed', (
-    tester,
-  ) async {
-    var listens = 0, cancels = 0;
-    final controller = StreamController<int>(
-      onListen: () => listens++,
-      onCancel: () => cancels++,
-    );
-    await tester.pumpWidget(
-      MaterialApp(
-        home: StreamBuilder<int>(
-          stream: controller.stream,
-          builder: (_, s) => Text('${s.data}'),
+  testWidgets(
+    'board cancels its listener on navigation and does not duplicate on rebuild',
+    (tester) async {
+      var listens = 0, cancels = 0;
+      final controller = StreamController<List<BoardMessage>>(
+        onListen: () => listens++,
+        onCancel: () => cancels++,
+      );
+      final auth = AuthService(FakeAuth(), FakeDb());
+      final service = FakeBoard(controller.stream);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: BoardScreen(
+            auth: auth,
+            name: 'Alice Tester',
+            boardService: service,
+          ),
         ),
-      ),
-    );
-    expect(listens, 1);
-    await tester.pumpWidget(const SizedBox());
-    expect(cancels, 1);
-    await tester.runAsync(() => controller.close());
-  });
+      );
+      await tester.pump();
+      controller.add([]);
+      await tester.pump();
+      expect(find.text('Start the conversation'), findsOneWidget);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: BoardScreen(
+            auth: auth,
+            name: 'Alice Tester',
+            boardService: service,
+          ),
+        ),
+      );
+      await tester.pump();
+      expect(listens, 1);
+      await tester.pumpWidget(const SizedBox());
+      expect(cancels, 1);
+      await tester.runAsync(() => controller.close());
+    },
+  );
 }

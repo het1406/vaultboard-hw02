@@ -45,22 +45,31 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    initialization = widget.initializer?.call() ?? initialize();
+    initialization = startInitialization();
+  }
+
+  Future<void> startInitialization() {
+    final future = (widget.initializer ?? initialize)();
+    // Attach an error handler immediately, before FutureBuilder rebuilds.
+    future.ignore();
+    return future;
   }
 
   Future<void> initialize() async {
-    if (Firebase.apps.isEmpty) {
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
-    }
     if (const bool.fromEnvironment('USE_EMULATORS')) {
+      final app =
+          Firebase.apps.where((a) => a.name == 'demo-vaultboard').firstOrNull ??
+          await Firebase.initializeApp(demoProjectId: 'demo-vaultboard');
       const host = String.fromEnvironment(
         'EMULATOR_HOST',
         defaultValue: '10.0.2.2',
       );
-      await FirebaseAuth.instance.useAuthEmulator(host, 9099);
-      FirebaseFirestore.instance.useFirestoreEmulator(host, 8080);
+      await FirebaseAuth.instanceFor(app: app).useAuthEmulator(host, 9099);
+      FirebaseFirestore.instanceFor(app: app).useFirestoreEmulator(host, 8080);
+    } else {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
     }
   }
 
@@ -70,7 +79,22 @@ class _SplashState extends State<Splash> {
     builder: (context, s) {
       if (s.connectionState == ConnectionState.done && !s.hasError) {
         return AuthGate(
-          auth: AuthService(FirebaseAuth.instance, FirebaseFirestore.instance),
+          auth: AuthService(
+            FirebaseAuth.instanceFor(
+              app: Firebase.app(
+                const bool.fromEnvironment('USE_EMULATORS')
+                    ? 'demo-vaultboard'
+                    : '[DEFAULT]',
+              ),
+            ),
+            FirebaseFirestore.instanceFor(
+              app: Firebase.app(
+                const bool.fromEnvironment('USE_EMULATORS')
+                    ? 'demo-vaultboard'
+                    : '[DEFAULT]',
+              ),
+            ),
+          ),
         );
       }
       return Scaffold(
@@ -98,8 +122,7 @@ class _SplashState extends State<Splash> {
                   ),
                   TextButton(
                     onPressed: () => setState(() {
-                      initialization =
-                          widget.initializer?.call() ?? initialize();
+                      initialization = startInitialization();
                     }),
                     child: const Text('Retry'),
                   ),
@@ -367,17 +390,21 @@ class _AuthFormState extends State<AuthForm> {
 class BoardScreen extends StatefulWidget {
   final AuthService auth;
   final String name;
-  const BoardScreen({super.key, required this.auth, required this.name});
+  final BoardService? boardService;
+  const BoardScreen({
+    super.key,
+    required this.auth,
+    required this.name,
+    this.boardService,
+  });
   @override
   State<BoardScreen> createState() => _BoardScreenState();
 }
 
 class _BoardScreenState extends State<BoardScreen> {
-  late final service = BoardService(
-    widget.auth.db,
-    widget.auth.currentUser!.uid,
-    widget.name,
-  );
+  late final service =
+      widget.boardService ??
+      BoardService(widget.auth.db, widget.auth.currentUser!.uid, widget.name);
   late final stream = service.messageBoard();
   final composer = TextEditingController();
   bool busy = false, pending = false, ready = false;
