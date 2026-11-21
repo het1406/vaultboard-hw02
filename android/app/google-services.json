@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "815141156812",
+    "project_id": "hetjani-vaultboard-hw02",
+    "storage_bucket": "hetjani-vaultboard-hw02.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815141156812:android:046076422352a45bf98f69",
+        "android_client_info": {
+          "package_name": "edu.gsu.hetjani.message_board"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG7jw4O_XawLBT9RKMKMJRuXGxFwGOnJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
