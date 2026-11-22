@@ -49,7 +49,10 @@ class _SplashState extends State<Splash> {
   }
 
   Future<void> startInitialization() {
-    final future = (widget.initializer ?? initialize)();
+    final future = Future.wait<void>([
+      (widget.initializer ?? initialize)(),
+      Future<void>.delayed(const Duration(milliseconds: 900)),
+    ]).then<void>((_) {});
     // Attach an error handler immediately, before FutureBuilder rebuilds.
     future.ignore();
     return future;
@@ -116,7 +119,8 @@ class _SplashState extends State<Splash> {
                 ),
                 const Text('A shared space. Your words, protected.'),
                 const SizedBox(height: 28),
-                if (s.hasError) ...[
+                if (s.connectionState == ConnectionState.done &&
+                    s.hasError) ...[
                   const Text(
                     'Unable to connect to Firebase. Check your connection and app configuration.',
                   ),

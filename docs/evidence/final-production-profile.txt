@@ -1,0 +1,8 @@
+Production authenticated synthetic client ready; profile fields: firstName, lastName, registrationDateTime, role, uid
+{
+  "firstName": "Het",
+  "role": "member",
+  "uid": "GhWyY1fHvxMsSh4u23VJgI5nSVj2",
+  "registrationDateTime": "2026-11-22T02:58:19.339Z",
+  "lastName": "Jani"
+}

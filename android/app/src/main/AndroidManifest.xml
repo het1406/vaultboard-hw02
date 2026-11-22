@@ -3,7 +3,7 @@
     <application android:networkSecurityConfig="@xml/network_security_config"
         android:label="Vaultboard"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@drawable/vaultboard_mark">
         <activity
             android:name=".MainActivity"
             android:exported="true"

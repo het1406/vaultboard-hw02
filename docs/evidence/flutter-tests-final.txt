@@ -1,0 +1,6 @@
+00:00 +0: loading /Users/hetjani/Desktop/HW 2/message_board/test/widget_test.dart
+00:00 +0: splash failure shows Retry and retries once
+00:00 +1: capture real rendered authentication screens
+00:01 +2: registration validates invalid email and mismatch
+00:01 +3: board cancels its listener on navigation and does not duplicate on rebuild
+00:01 +4: All tests passed!

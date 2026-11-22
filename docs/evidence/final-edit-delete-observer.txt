@@ -1,0 +1,5 @@
+Production authenticated synthetic client ready; profile fields: firstName, lastName, registrationDateTime, role, uid
+{"at":"2026-11-22T04:57:49.902Z","messages":[{"id":"mt5tgdW1uBAGJfajFb3u","text":"Final certified release post.","author":"Het Jani"}]}
+{"at":"2026-11-22T04:59:13.605Z","messages":[{"id":"mt5tgdW1uBAGJfajFb3u","text":"Final release: edited on Android.","author":"Het Jani"}]}
+{"at":"2026-11-22T04:59:45.903Z","messages":[{"id":"final-live-probe","text":"Live from Bob: this arrives without refreshing.","author":"Bob Tester"},{"id":"mt5tgdW1uBAGJfajFb3u","text":"Final release: edited on Android.","author":"Het Jani"}]}
+{"at":"2026-11-22T05:00:45.202Z","messages":[{"id":"final-live-probe","text":"Live from Bob: this arrives without refreshing.","author":"Bob Tester"}]}

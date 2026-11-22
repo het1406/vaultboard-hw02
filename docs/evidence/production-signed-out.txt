@@ -1,0 +1,2 @@
+Production authenticated synthetic client ready; profile fields: firstName, lastName, registrationDateTime, role, uid
+PASS signed-out read permission-denied

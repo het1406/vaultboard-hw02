@@ -1,0 +1,36 @@
+✔ authorized create/read/update/delete (1012.816833ms)
+✔ signed-out read denied (187.141542ms)
+[2026-11-21T02:55:37.084Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d27c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-21T02:55:37.115Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d285 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+✔ cross-user update and delete denied (240.87675ms)
+[2026-11-21T02:55:37.207Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d286 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+✔ forged author denied (89.833667ms)
+[2026-11-21T02:55:37.364Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d27b error. Code: 7 Message: 7 PERMISSION_DENIED: No matching allow statements
+[2026-11-21T02:55:37.399Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d289 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+✔ profiles private, roles fixed, UID enforced (188.476542ms)
+[2026-11-21T02:55:37.506Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d28a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-21T02:55:37.515Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d28d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-21T02:55:37.523Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d28e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+✔ ownership and creation timestamps immutable (123.834834ms)
+[2026-11-21T02:55:37.597Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d28f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-21T02:55:37.615Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d292 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-21T02:55:37.634Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d293 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-21T02:55:37.657Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d294 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-21T02:55:37.671Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d295 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+✔ invalid text, extra fields, and device timestamps denied (148.892875ms)
+[2026-11-21T02:55:37.732Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d296 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-21T02:55:37.755Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d297 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+[2026-11-21T02:55:37.811Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d29a error. Code: 7 Message: 7 PERMISSION_DENIED: No matching allow statements
+✔ receipt required, immutable, cannot exist without message (138.876333ms)
+✔ concurrent repeated transaction yields one message; late retry after delete stays deleted (329.46225ms)
+✔ second client receives create, edit, delete; unrelated post remains (171.131125ms)
+[2026-11-21T02:55:38.398Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x7cb1d29b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+✔ multiline messages allowed, newline-only rejected (86.109333ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4923.984958

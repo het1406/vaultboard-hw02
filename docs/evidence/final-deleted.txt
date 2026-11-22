@@ -1,0 +1,2 @@
+Production authenticated synthetic client ready; profile fields: firstName, lastName, registrationDateTime, role, uid
+Messages: [{"id":"final-live-probe","editedAt":null,"createdAt":{"type":"firestore/timestamp/1.0","seconds":1795323585,"nanoseconds":791000000},"text":"Live from Bob: this arrives without refreshing.","authorName":"Bob Tester","authorUid":"BbaFBejSxKVjNflmIMeANbSavzN2"}]

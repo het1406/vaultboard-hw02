@@ -17,8 +17,19 @@ try{await signInWithEmailAndPassword(auth,account.email,account.password);}catch
 const uid=auth.currentUser.uid,profile=doc(db,'users',uid);
 if(!(await getDoc(profile)).exists())await setDoc(profile,{uid,firstName:'Bob',lastName:'Tester',role:'member',registrationDateTime:serverTimestamp()});
 console.log('Production authenticated synthetic client ready; profile fields:',Object.keys((await getDoc(profile)).data()).sort().join(', '));
-const id='production-live-probe';
-if(command==='signed-out'){
+const id=process.argv[4]||'production-live-probe';
+if(command==='profile-alice'||command==='late-retry'){
+ const other=initializeApp({projectId:config.project_info.project_id,apiKey:config.client[0].api_key[0].current_key,appId:config.client[0].client_info.mobilesdk_app_id},'alice');
+ const login=await signInWithEmailAndPassword(getAuth(other),accounts.alice.email,accounts.alice.password);
+ const data=(await getDoc(doc(getFirestore(other),'users',login.user.uid))).data();
+ console.log(JSON.stringify({...data,registrationDateTime:data.registrationDateTime.toDate().toISOString()},null,2));
+ if(command==='late-retry'){
+ const adb=getFirestore(other);const id=process.argv[4]||'DX3Z0mZuLoIBGIK8eKBx';const receipt=doc(adb,`users/${login.user.uid}/postReceipts/${id}`);
+ await runTransaction(adb,async tx=>{if((await tx.get(receipt)).exists())return;throw new Error('Expected immutable receipt');});
+ if((await getDoc(doc(adb,'messages',id))).exists())throw new Error('Deleted message unexpectedly exists');
+ console.log('PASS late replay recognizes receipt; deleted message stays absent');
+ }
+}else if(command==='signed-out'){
  const guest=initializeApp({projectId:config.project_info.project_id,apiKey:config.client[0].api_key[0].current_key,appId:config.client[0].client_info.mobilesdk_app_id},'guest');
  try{await getDocs(collection(getFirestore(guest),'messages'));throw new Error('SECURITY FAILURE signed-out read');}catch(e){if(e.code!=='permission-denied')throw e;console.log('PASS signed-out read',e.code);}
 }else if(command==='create'){
@@ -30,7 +41,7 @@ else if(command==='deny'){
  for(const [action,fn] of [['cross-user update',()=>updateDoc(other.ref,{text:'Unauthorized',editedAt:serverTimestamp()})],['cross-user delete',()=>deleteDoc(other.ref)]]){try{await fn();throw new Error('SECURITY FAILURE '+action);}catch(e){if(e.code!=='permission-denied')throw e;console.log('PASS',action,e.code);}}
 }else if(command==='watch'){
  const unsubscribe=onSnapshot(collection(db,'messages'),s=>console.log(JSON.stringify({at:new Date().toISOString(),messages:s.docs.map(d=>({id:d.id,text:d.data().text,author:d.data().authorName}))})));
- setTimeout(()=>{unsubscribe();process.exit(0)},55000);
+ setTimeout(()=>{unsubscribe();process.exit(0)},180000);
 }else if(command==='inspect'){
  const docs=await getDocs(collection(db,'messages'));console.log('Messages:',JSON.stringify(docs.docs.map(d=>({id:d.id,...d.data()}))));
 }

@@ -1,0 +1,14 @@
+Final APK SHA-256: e052a063f73f938bd45461ec5b579b2adaa2960bc01e581617aaeec3fd003612
+Device: Campus_Class / sdk_gphone16k_arm64 / Android 17.
+PASS: Install returned Success; installed APK hash matches build output.
+PASS: App data cleared with pm clear (Success); registration required a new Auth account.
+PASS: Fresh registration created UID GhWyY1fHvxMsSh4u23VJgI5nSVj2 and a five-field profile.
+PASS: Empty board displayed Start the conversation.
+PASS: Repeated post taps created exactly one document, mt5tgdW1uBAGJfajFb3u.
+PASS: Android edit changed that same ID; live SDK client received updated text.
+PASS: Confirmed deletion removed that ID; unrelated final-live-probe remained.
+PASS: Production late replay found the immutable receipt and did not recreate the deleted post.
+PASS: Sign out displayed Welcome to Vaultboard; email/password sign-in returned to Het Jani's board.
+PASS: Force-stop/relaunch restored the signed-in session.
+Earlier APK persistence evidence: offline draft survived process restart, reconnect produced one document,
+and Android reboot restored the session. These are explicitly labeled earlier-build tests in the PDF.

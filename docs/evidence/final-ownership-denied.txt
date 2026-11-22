@@ -1,0 +1,5 @@
+Production authenticated synthetic client ready; profile fields: firstName, lastName, registrationDateTime, role, uid
+[2026-11-22T04:57:36.682Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x3fb56440 error. Code: 7 Message: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+PASS cross-user update permission-denied
+[2026-11-22T04:57:36.835Z]  @firebase/firestore: Firestore (13.4.0): GrpcConnection RPC 'Write' stream 0x3fb56441 error. Code: 7 Message: 7 PERMISSION_DENIED: Missing or insufficient permissions.
+PASS cross-user delete permission-denied

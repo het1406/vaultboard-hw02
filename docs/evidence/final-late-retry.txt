@@ -1,0 +1,9 @@
+Production authenticated synthetic client ready; profile fields: firstName, lastName, registrationDateTime, role, uid
+{
+  "role": "member",
+  "registrationDateTime": "2026-11-22T02:58:19.339Z",
+  "firstName": "Het",
+  "lastName": "Jani",
+  "uid": "GhWyY1fHvxMsSh4u23VJgI5nSVj2"
+}
+PASS late replay recognizes receipt; deleted message stays absent

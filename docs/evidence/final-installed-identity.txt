@@ -1,0 +1,2 @@
+PASS: installed APK and build output SHA-256 match
+e052a063f73f938bd45461ec5b579b2adaa2960bc01e581617aaeec3fd003612

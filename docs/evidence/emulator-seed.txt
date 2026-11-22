@@ -1,0 +1,2 @@
+Verified emulator profile and message: Alice true true
+Verified emulator profile and message: Bob true true
