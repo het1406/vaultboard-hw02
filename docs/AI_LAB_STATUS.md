@@ -26,7 +26,7 @@ Verified decision: retain BoardService's atomic message-plus-receipt transaction
 
 ## Final judgment
 
-The student's expectations correctly distinguish device state from committed cloud data. Gemini provides a useful beginner-level flow and test checklist, but the token-stream description and generic offline assumptions need correction. The actual app deliberately favors explicit retry and durable receipts over automatic transaction queueing. This is appropriate for a small shared board because it protects one logical submission and preserves deletion, with the documented costs of extra reads/writes, retained receipts, and local pending text.
+The student's cloud/device distinction is supported. I kept Gemini's flow and direct-authorization test advice, corrected its token-stream claim, and narrowed offline behavior to explicit transaction retry. Durable receipts fit this small board because they prevent duplicate logical writes and preserve deletion; extra reads/writes, permanent storage and local-draft privacy remain trade-offs.
 
 ## Official sources checked November 22, 2026
 
