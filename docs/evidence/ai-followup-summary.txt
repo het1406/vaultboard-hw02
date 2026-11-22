@@ -1,0 +1,7 @@
+Follow-up verification: November 22, 2026, 18:41 Eastern (23:41 UTC)
+✔ concurrent repeated transaction yields one message; late retry after delete stays deleted (960.691417ms)
+✔ second client receives create, edit, delete; unrelated post remains (67.302875ms)
+ℹ tests 2
+ℹ pass 2
+ℹ fail 0
+ℹ skipped 0
