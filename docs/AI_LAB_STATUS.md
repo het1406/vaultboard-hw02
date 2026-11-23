@@ -2,7 +2,7 @@
 
 ## Provenance and chronology
 
-Het Jani supplied five expectations, a response identified as the complete Gemini response, personal reflections, and a Firebase Console screenshot on November 22, 2026 (Eastern Time). The exact Gemini interaction date was not supplied and is not inferred from the submission date. The student confirmed that no specific model name/version was displayed. Gemini was named by the student as the permitted tool; explicit instructor approval confirmation was requested. The original implementation tests happened before these statements were provided. This comparison is a subsequent review, not a reconstructed pre-test exercise.
+Het Jani supplied five expectations, a response identified as the complete Gemini response, personal reflections, and a Firebase Console screenshot on November 22, 2026 (Eastern Time). The student confirmed that the Gemini interaction occurred on November 22, 2026 (Eastern Time). The student confirmed that no specific model name/version was displayed. Gemini was named by the student as the permitted tool; explicit instructor approval confirmation was requested. The original implementation tests happened before these statements were provided. This comparison is a subsequent review, not a reconstructed pre-test exercise.
 
 ## Summary of the supplied Gemini response
 

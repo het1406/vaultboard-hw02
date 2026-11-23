@@ -6,7 +6,7 @@ A single community message board with Material 3 screens, Firebase email/passwor
 
 ## Current verification status
 
-The signed Android release APK has been built, installed, and exercised on Android 17. `flutter analyze` is clean, four Flutter widget tests pass, and all eleven emulator rules/integration tests pass. Production registration, profile creation, message CRUD, live updates to another authenticated SDK client, ownership denials, duplicate prevention, and session behavior are evidenced. **Academic update:** the student supplied expectations, Gemini output, personal reflections and a Console screenshot on November 22. The comparison corrects Gemini's auth-stream claim and narrows the offline/retry expectations. Exact Gemini interaction date and original pre-test chronology remain unconfirmed. The Console image was visually reviewed in chat; its local file is needed to embed it in the PDF. No LMS submission has been made.
+The signed Android release APK has been built, installed, and exercised on Android 17. `flutter analyze` is clean, four Flutter widget tests pass, and all eleven emulator rules/integration tests pass. Production registration, profile creation, message CRUD, live updates to another authenticated SDK client, ownership denials, duplicate prevention, and session behavior are evidenced. **Academic update:** the student supplied expectations, Gemini output, personal reflections and a Console screenshot on November 22. The comparison corrects Gemini's auth-stream claim and narrows the offline/retry expectations. The student confirmed November 22, 2026 as the Gemini interaction date. The original Console screenshot is embedded in the PDF. The original pre-test chronology is not reconstructed or backdated. No LMS submission has been made.
 
 ## Setup
 
@@ -84,7 +84,7 @@ Run the entire matrix in `docs/TEST_MATRIX.md` on that exact APK. Record model, 
 
 The final APK SHA-256 is `e052a063f73f938bd45461ec5b579b2adaa2960bc01e581617aaeec3fd003612`. The initial disk shortage was resolved by the student. Android release build/install and core runtime tests now pass. Kotlin was updated to 2.4.21 for the current Firebase SDK; build logs retain nonfatal metadata warnings from Android analysis tools. The newest-100 limit needs pagination for older messages; there is no moderation, full-text search, or receipt cleanup. Registration recovery asks for names again after a failed profile write. Profile names cannot currently be edited. Stream failures show a useful error but do not provide a dedicated restart-stream button.
 
-Review the completed student-input comparison/reflections, confirm the Gemini interaction date, and save the supplied Console image locally for inclusion without inventing chronology. The evidence PDF contains actual Android screenshots and explicitly identifies missing academic material. `HW02_FINAL_SUBMISSION` contains exactly the signed APK and evidence PDF. Paste the GitHub URL separately into iCollege; no submission has been made.
+The evidence PDF includes the completed student-input comparison/reflections, confirmed Gemini date, original Console screenshot and actual Android evidence. It explicitly preserves the chronology limitation. `HW02_FINAL_SUBMISSION` contains exactly the signed APK and evidence PDF. Paste the GitHub URL separately into iCollege; no submission has been made.
 
 ## Official references
 
